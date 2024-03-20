@@ -1,0 +1,12 @@
+@startuml seq
+
+actor Użytkownik as user
+control Rękawica as glove
+participant Wizualizacja as server
+
+user -> glove : Rusza dłonią
+glove -> server : Rezystancje
+server -> server : Interpretacja na pozycję dłoni
+server --> user : Wizualizacja
+
+@enduml
