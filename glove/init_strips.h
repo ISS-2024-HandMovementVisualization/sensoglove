@@ -5,7 +5,7 @@ struct Strip {
 
 Strip strips[] = {
   {
-    .pin = 13,
+    .pin = 32,
     .knownResistor = 1000.0,
   }
 };
