@@ -18,7 +18,7 @@ sensor_line = None
 last_send = timer()
 
 def send(data):
-    requests.post("http://192.168.0.145:8080", data=data)
+    requests.post("http://192.168.0.145:8080", data=data, timeout=1)
 
 class SerialParser:
     def __init__(self):
@@ -38,20 +38,23 @@ class SerialParser:
 
     def got_sensor_line(self, line):
         self.sensor_line = self.process_sensor_line(line)
-        print(self.sensor_line)
+        print("prepared: ", self.sensor_line)
         elapsed = timer() - self.last_send
-        print(elapsed)
+        print(f"{elapsed=}")
         if elapsed >= self.interval_s and self.sensor_line:
+            print(f"sending: ({self.sensor_line})")
             if not self.dry:
-                print("sending")
                 send(self.sensor_line)
             self.last_send = timer()
 
     def process_sensor_line(self, line):
-        readings =  line.strip().partition(":")[2].strip().split(" ")
-        while len(readings) > 4:
-            readings += "0"
+        readings = line.strip().partition(":")[2].strip().split(" ")
+        while len(readings) < 4:
+            readings.append("0")
+
+        print(f"{readings=}")
         return " ".join(readings)
+        # return dummy()
 
 
 def dummy():
@@ -59,7 +62,7 @@ def dummy():
     x2 = random.randint(-10, 90)
     x3 = random.randint(-10, 90)
     x4 = random.randint(-10, 90)
-    send(f"{x1} {x2} {x3} {x4}")
+    return f"{x1} {x2} {x3} {x4}"
 
 def main():
     reader = SerialParser()
