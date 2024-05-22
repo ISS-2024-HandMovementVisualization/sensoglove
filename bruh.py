@@ -26,7 +26,7 @@ class SerialParser:
         self.sensor_line = ""
         self.last_send = timer()
         self.interval_s = 0.1
-        self.dry = False
+        self.dry = True
 
     def advance(self, char):
         self.line += char

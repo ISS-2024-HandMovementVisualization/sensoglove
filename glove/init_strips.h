@@ -7,6 +7,18 @@ Strip strips[] = {
   {
     .pin = 32,
     .knownResistor = 1000.0,
+  },
+  {
+    .pin = 33,
+    .knownResistor = 1000.0,
+  },
+  {
+    .pin = 25,
+    .knownResistor = 1000.0,
+  },
+  {
+    .pin = 26,
+    .knownResistor = 1000.0,
   }
 };
 
