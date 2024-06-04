@@ -6,10 +6,6 @@ const int FREQUENCY_HZ = 1;
 // const int DELAY_MS = 1000 / FREQUENCY_HZ;
 const int DELAY_MS = 100;
 
-const char* ssid = "511_A(starion)";
-const char* password = "zwykleHaslo";
-const char* serverName = "http://192.168.0.145:8080";
-
 float resistances[STRIP_NUM];
 
 float readResistance(Strip const& strip) {
